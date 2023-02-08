@@ -1,5 +1,5 @@
 Para clonar el repo hay que colocar
-GIT clone 
+GIT clone  git@github.com:AndresSArias/SecondPawShop-Backend.git
 
 Sólicitar la versión más actual en el repositorio.
 GIT pull origin nombreDeLaRama
