@@ -108,15 +108,29 @@ ALTER TABLE Venta
 
 /*Se crea un trigger en la tabla venta que actualiza la cantidad de la tabla producto cuando en el estado este completado alguna venta*/
 DELIMITER $$
-CREATE TRIGGER actualizar_cantidad_producto
+CREATE TRIGGER actualizar_cantidad_producto_insert
 AFTER INSERT ON Venta
 FOR EACH ROW
 BEGIN
-    UPDATE Producto
-    SET cantidad = cantidad - NEW.cantidadAComprar
-    WHERE Producto.idUsuarioFK = NEW.idUsuarioPropetario AND Producto.nombre = NEW.nombreProducto AND NEW.estado = 'COMPRADO';
-END
-$$
+    IF NEW.estado = 'COMPRADO' THEN
+        UPDATE Producto
+        SET cantidad = cantidad - NEW.cantidadAComprar
+        WHERE Producto.idUsuarioFK = NEW.idUsuarioPropetario AND Producto.nombre = NEW.nombreProducto;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER actualizar_cantidad_producto_update
+AFTER UPDATE ON Venta
+FOR EACH ROW
+BEGIN
+    IF NEW.estado = 'COMPRADO' THEN
+        UPDATE Producto
+        SET cantidad = cantidad - NEW.cantidadAComprar
+        WHERE Producto.idUsuarioFK = NEW.idUsuarioPropetario AND Producto.nombre = NEW.nombreProducto;
+    END IF;
+END$$
 DELIMITER ;
 
 

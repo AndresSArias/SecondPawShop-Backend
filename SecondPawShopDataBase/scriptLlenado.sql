@@ -39,7 +39,7 @@ VALUES ('5754664764','Saco','Ropa','Saco con poco uso muy comodo para perritos m
 INSERT INTO PRODUCTO (idUsuarioFK,nombre,categoria,descripcion,cantidad,precio,imagen,estado) 
 VALUES ('1233906548','Saco rojo','Ropa','Saco para perro pequeño, de color rojo es casi nuevo',1,95000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088330146974531634/sacoPerro.jpg','VERIFICANDO');
 
-/*INSERCION DE VENTAS*/
+/*INSERCION DE VENTAS */
 INSERT INTO VENTA (idVenta,idUsuarioPropetario,nombreProducto,idUsuarioComprador,cantidadAComprar,precioTotal,estado)
 VALUES ('1','1233906548','Pastilla Antipulgas','1029384756',1,12000,'COMPRADO');
 INSERT INTO VENTA (idVenta,idUsuarioPropetario,nombreProducto,idUsuarioComprador,cantidadAComprar,precioTotal,estado)
