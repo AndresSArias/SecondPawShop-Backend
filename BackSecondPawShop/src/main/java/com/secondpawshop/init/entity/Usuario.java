@@ -10,28 +10,28 @@ import jakarta.persistence.Table;
 public class Usuario {
 	
 	@Id
-	@Column (name = "idUsuario")
+	@Column (name = "IDUSUARIO")
 	private String idUsuario;
 	
-	@Column (name = "nombre")
+	@Column (name = "NOMBRE")
 	private String nombre;
 	
-	@Column (name = "apellido")
+	@Column (name = "APELLIDO")
 	private String apellido;
 	
-	@Column (name = "correo")
+	@Column (name = "CORREO")
 	private String correo;
 	
-	@Column (name = "celular")
+	@Column (name = "CELULAR")
 	private String celular;
 	
-	@Column (name = "direccion")
+	@Column (name = "DIRECCION")
 	private String direccion;
 	
-	@Column (name = "contrsena")
+	@Column (name = "CONTRASENA")
 	private String contrasena;
 	
-	@Column (name = "rol")
+	@Column (name = "ROL")
 	private String rol;
 	
 	public Usuario () {

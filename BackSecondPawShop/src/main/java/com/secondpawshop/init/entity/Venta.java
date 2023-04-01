@@ -12,25 +12,25 @@ import jakarta.persistence.Table;
 public class Venta {
 	
 	@Id
-	@Column (name = "idVenta")
+	@Column (name = "IDVENTA")
 	private String idVenta;
 	
 	@Id
-	@Column (name = "idUsuarioPropetario")
+	@Column (name = "IDUSUARIOPROPETARIO")
 	private String idUsuarioPropetario;
 	
 	@Id
-	@Column (name = "nombreProducto")
+	@Column (name = "NOMBREPRODUCTO")
 	private String nombreProducto;
 	
 	@Id
-	@Column (name = "idUsuarioComprador")
+	@Column (name = "IDUSUARIOCOMPRADOR")
 	private String idUsuarioComprador;
 	
-	@Column (name = "cantidadAComprar")
+	@Column (name = "CANTIDADACOMPRAR")
 	private String cantidadAComprar;
 
-	@Column (name = "estado")
+	@Column (name = "ESTADO")
 	private String estado;
 	
 	public Venta () {

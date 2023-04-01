@@ -12,29 +12,29 @@ import jakarta.persistence.Table;
 public class Producto {
 
 	@Id
-	@Column (name = "idUsuarioFK")
+	@Column (name = "IDUSUARIOFK")
 	private String idUsuarioFK;
 	
 	@Id
-	@Column (name = "nombre")
+	@Column (name = "NOMBRE")
 	private String nombre;
 	
-	@Column (name = "categoria")
+	@Column (name = "CATEGORIA")
 	private String categoria;
 
-	@Column (name = "descripcion")
+	@Column (name = "DESCRIPCION")
 	private String descripcion;
 	
-	@Column (name = "cantidad")
+	@Column (name = "CANTIDAD")
 	private int cantidad;
 	
-	@Column (name = "precio")
+	@Column (name = "PRECIO")
 	private int precio;
 	
-	@Column (name = "imagen")
+	@Column (name = "IMAGEN")
 	private String imagen;
 	
-	@Column (name = "estado")
+	@Column (name = "ESTADO")
 	private String estado;
 	
 	public Producto () {
