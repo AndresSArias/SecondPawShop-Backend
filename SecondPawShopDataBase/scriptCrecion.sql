@@ -46,7 +46,8 @@ CREATE TABLE Usuario
 	celular VARCHAR(10) NOT NULL COMMENT 'Columna que contendrá el número de contacto de los usuarios',
 	direccion VARCHAR(50) NOT NULL COMMENT 'Columna que contiene los registros de las direcciones de los usuarios del sistema.',
 	contrasena VARCHAR(20) NOT NULL COMMENT 'Columna que contiene la contrasena del usuario para su autentificación en el sistema.',
-	CONSTRAINT PK_Table_Two PRIMARY KEY (idUsuario ASC)
+	rol VARCHAR(7) NOT NULL COMMENT 'Columna que contiene el rol del usuario para su autentificación en el sistema', 
+    CONSTRAINT PK_Table_Two PRIMARY KEY (idUsuario ASC)
 )
 COMMENT = 'Esta tabla contiene los registros de los clientes de la aplicación'
 
@@ -76,6 +77,10 @@ ALTER TABLE Producto
 ALTER TABLE Producto 
  ADD CONSTRAINT Check_categoria CHECK (categoria IN ('Salud', 'Bienestar', 'Ropa', 'Accesorio'))
 ;
+
+ALTER TABLE Usuario
+	ADD CONSTRAINT Check_rol CHECK (rol IN ('ADMIN', 'CLIENTE')) ;
+    
 /*Se crea el index de la tabla producto*/
 ALTER TABLE Producto 
  ADD INDEX IXFK_Producto_Usuario (idUsuarioFK ASC)

@@ -4,16 +4,18 @@
 /* ---------------------------------------------------- */
 
 /*INSERCIÓN DE USUARIOS*/
-INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena) 
-VALUES ('1233906548','Andrés','Arias','andres31321@gmail.com','3142294642','Calle 133 #118-4','clave1');
-INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena) 
-VALUES ('4242123121','José','Yepés','yepes@gmail.com','3184282638','Carrera 24 #90-23','clave2');
-INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena) 
-VALUES ('7987897897','Santiago','Ventura','santiago@gmail.com','3123427615','Transversal 97 #26-30','clave3');
-INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena) 
-VALUES ('5754664764','Gabriel','Ventura','gabriel@gmail.com','3004123123','Avenida 23 #12-5','clave4');
-INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena) 
-VALUES ('1029384756','Dona','Parra','parraDona@gmail.com','3142294642','Calle 80 #126-52','Andrys');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol)  
+VALUES ('11111111','ADMIN','ADMIN','ADMIN@gmail.com','555555','Calle 0 #0-0','ADMIN','ADMIN');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol) 
+VALUES ('1233906548','Andrés','Arias','andres31321@gmail.com','3142294642','Calle 133 #118-4','clave1','CLIENTE');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol) 
+VALUES ('4242123121','José','Yepés','yepes@gmail.com','3184282638','Carrera 24 #90-23','clave2','CLIENTE');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol) 
+VALUES ('7987897897','Santiago','Ventura','santiago@gmail.com','3123427615','Transversal 97 #26-30','clave3','CLIENTE');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol) 
+VALUES ('5754664764','Gabriel','Ventura','gabriel@gmail.com','3004123123','Avenida 23 #12-5','clave4','CLIENTE');
+INSERT INTO USUARIO (idUsuario,nombre,apellido,correo,celular,direccion,contrasena,rol) 
+VALUES ('1029384756','Dona','Parra','parraDona@gmail.com','3142294642','Calle 80 #126-52','Andrys','CLIENTE');
 
 /*Inserción de PRODUCTOS*/
 INSERT INTO PRODUCTO (idUsuarioFK,nombre,categoria,descripcion,cantidad,precio,imagen,estado) 
