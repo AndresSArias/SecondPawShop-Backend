@@ -19,7 +19,7 @@ public class usuarioController {
 	public usuarioController (UserService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-	
+
 	@GetMapping ("/Usuarios")
 	public List <Usuario> getUsuarios(){
 		return usuarioService.getUsers();
