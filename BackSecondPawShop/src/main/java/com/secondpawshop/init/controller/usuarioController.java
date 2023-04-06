@@ -24,4 +24,9 @@ public class usuarioController {
 	public List <Usuario> getUsuarios(){
 		return usuarioService.getUsers();
 	}
+	
+	@GetMapping ("/prueba")
+	public String getPrueba() {
+		return "Hola Mundo deploy";
+	}
 }

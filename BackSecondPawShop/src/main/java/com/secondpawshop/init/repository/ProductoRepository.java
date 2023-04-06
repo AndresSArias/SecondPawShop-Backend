@@ -25,7 +25,7 @@ public interface ProductoRepository extends JpaRepository <Producto, ProductoLla
 	List<Producto> getProductoPublicado();
 	
 	@Query (value = "SELECT * FROM PRODUCTO WHERE ESTADO = 'VERIFICANDO'",nativeQuery = true)
-	List<Producto> geProductoVerificando();
+	List<Producto> getProductoVerificando();
 	 /*
 	@Modifying
 	@Query("UPDATE PRODUCTO P SET ESTADO = 'PUBLICADO' WHERE P.IDUSUARIOFK = :idUsuarioFK AND NOMBRE = :nombre")
@@ -41,6 +41,8 @@ public interface ProductoRepository extends JpaRepository <Producto, ProductoLla
 	    }
 	}
 
+	@Query (value = "SELECT * FROM PRODUCTO WHERE ESTADO = 'PUBLICADO' AND CATEGORIA =:categoria",nativeQuery = true)
+	List<Producto> getProductoFromCategoria (String categoria);
 	
-	
+	Optional<Producto> findByIdUsuarioFKAndNombre(String idUsuarioFK, String nombre);
 }

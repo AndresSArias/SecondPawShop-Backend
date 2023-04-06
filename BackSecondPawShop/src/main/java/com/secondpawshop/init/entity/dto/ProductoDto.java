@@ -1,48 +1,24 @@
-package com.secondpawshop.init.entity;
+package com.secondpawshop.init.entity.dto;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
 
-@Entity
-@Table (name = "PRODUCTO")
-@IdClass(ProductoLlaveCompuesta.class)
-public class Producto {
-
-	@Id
-	@Column (name = "IDUSUARIOFK")
+public class ProductoDto {
+	
 	private String idUsuarioFK;
-	
-	@Id
-	@Column (name = "NOMBRE")
 	private String nombre;
-	
-	@Column (name = "CATEGORIA")
 	private String categoria;
-
-	@Column (name = "DESCRIPCION")
 	private String descripcion;
-	
-	@Column (name = "CANTIDAD")
 	private int cantidad;
-	
-	@Column (name = "PRECIO")
 	private int precio;
-	
-	@Column (name = "IMAGEN")
 	private String imagen;
 	
-	@Column (name = "ESTADO")
-	private String estado;
-	
-	public Producto () {
+	public ProductoDto () {
 		
 	}
 
-	public Producto(String idUsuarioFK, String nombre, String categoria, String descripcion, int cantidad, int precio,
-			String imagen, String estado) {
+	public ProductoDto(String idUsuarioFK, String nombre, String categoria, String descripcion, int cantidad,
+			int precio, String imagen) {
 		super();
 		this.idUsuarioFK = idUsuarioFK;
 		this.nombre = nombre;
@@ -51,7 +27,6 @@ public class Producto {
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.imagen = imagen;
-		this.estado = estado;
 	}
 
 	public String getIdUsuarioFK() {
@@ -109,14 +84,5 @@ public class Producto {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	
 	
 }

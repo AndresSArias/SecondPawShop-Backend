@@ -1,0 +1,18 @@
+spring_profiles_active=prod
+PROD_DB_HOST=containers-us-west-178.railway.app
+PROD_DB_PORT=5724
+PROD_DB_NAME=railway
+PROD_DB_PASSWORD=pDvCumt47rscKBMLp9XM
+PROD_DB_USERNAME=root
+
+
+
+INSERT INTO Producto (idUsuarioFK,nombre,categoria,descripcion,cantidad,precio,imagen,estado) 
+VALUES 
+('1233906548','Collar de Cuero','Accesorio','Collar de cuero de alta calidad con poco uso',1,200000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088259106160267284/collar-cuero.jpg','PUBLICADO'),
+('5754664764','Disfraz','Ropa','Disfraz de una pieza con mucho uso y un precio de locura',1,50000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088259974658007040/disfraz.jpg','PUBLICADO'),
+('5754664764','Gafas Gato','Accesorio','Gafas para gato como nuevas',1,25000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088260345199591524/gafas-gato.jpg','PUBLICADO'),
+('4242123121','Impermeable','Ropa','Impermeable para lluvias casi nuevo',4,80000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088261238431154248/impermeable.jpg','PUBLICADO'),
+('4242123121','Juguete Perro','Bienestar','Juguestes para perro mordiclables con un poco de uso',3,20000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088261806746783864/jugueteperro.jpg','PUBLICADO'),
+('1233906548','Pastilla Antipulgas','Salud','Pastilla comestible para el contro de pulgas',5,12000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088328266840027216/pastilla-antipulgas.jpg','PUBLICADO'),
+('5754664764','Saco','Ropa','Saco con poco uso muy comodo para perritos mediano',1,65000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088329107080753152/saco.jpg','PUBLICADO'), ('1233906548','Saco rojo','Ropa','Saco para perro pequeño, de color rojo es casi nuevo',1,95000,'https://cdn.discordapp.com/attachments/1065754163205648404/1088330146974531634/sacoPerro.jpg','VERIFICANDO');
