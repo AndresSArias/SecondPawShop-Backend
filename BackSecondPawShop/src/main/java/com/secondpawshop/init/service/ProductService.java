@@ -44,9 +44,20 @@ public class ProductService {
 		Optional<Producto> producto = productoRepository.findByIdUsuarioFKAndNombre(llaveCompuesta.getIdUsuarioFK(), llaveCompuesta.getNombre());
 		ProductoDto productoDto = new ProductoDto();
 		if (producto.isPresent()) {
-			productoDto = new ProductoDto(producto.get().getIdUsuarioFK(), producto.get().getNombre(),producto.get().getCategoria(), producto.get().getDescripcion(), producto.get().getCantidad(), producto.get().getPrecio(), producto.get().getImagen());
+			productoDto = new ProductoDto(producto.get().getIdUsuarioFK(), producto.get().getNombre(),producto.get().getCategoria()
+					, producto.get().getDescripcion(), producto.get().getCantidad(), producto.get().getPrecio(), producto.get().getImagen());
 		}
 		return productoDto;
+	}
+	
+	public void eliminarProducto (String idUsuarioFK, String nombre) {
+		ProductoLlaveCompuesta llaveCompuesta = new ProductoLlaveCompuesta(idUsuarioFK, nombre);
+		Optional<Producto> producto = productoRepository.findByIdUsuarioFKAndNombre(llaveCompuesta.getIdUsuarioFK(), llaveCompuesta.getNombre());
+		
+		if (producto.isPresent()) {
+			productoRepository.deleteById(llaveCompuesta);
+		}
+		
 	}
 	
 }

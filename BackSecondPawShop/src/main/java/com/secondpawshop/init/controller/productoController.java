@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,7 +62,8 @@ public class productoController {
 	
 	@PostMapping("/Producto/Crear")
 	public ResponseEntity<Producto> crearProducto (@RequestBody ProductoDto p ){
-		Producto producto = new Producto(p.getIdUsuarioFK(),p.getNombre(), p.getCategoria(), p.getDescripcion(), p.getCantidad(), p.getPrecio(), p.getImagen(), "VERIFICANDO");
+		Producto producto = new Producto(p.getIdUsuarioFK(),p.getNombre(), p.getCategoria(), p.getDescripcion(),
+				p.getCantidad(), p.getPrecio(), p.getImagen(), "VERIFICANDO");
 		productoService.save(producto);
 		return new ResponseEntity<>(producto, HttpStatus.CREATED);
 	}
@@ -72,8 +74,13 @@ public class productoController {
 	}
 	
 	@GetMapping("/Producto")
-	public ResponseEntity<ProductoDto> getCliente(@RequestBody ProductoLlaveCompuesta llaveCompuesta) {
+	public ResponseEntity<ProductoDto> getProducto(@RequestBody ProductoLlaveCompuesta llaveCompuesta) {
 		ProductoDto cliente = productoService.findByIdUsuarioFKAndNombre(llaveCompuesta);
 		return new ResponseEntity<ProductoDto>(cliente, HttpStatus.OK);
 	}
+	
+	@DeleteMapping("Producto/Eliminar/{idUsuarioFK}/{nombre}")
+    public void eliminarProducto(@PathVariable("idUsuarioFK") String idUsuarioFK, @PathVariable("nombre") String nombre) {
+        productoService.eliminarProducto(idUsuarioFK, nombre);
+    }
 }
