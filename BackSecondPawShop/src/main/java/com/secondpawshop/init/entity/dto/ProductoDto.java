@@ -1,7 +1,5 @@
 package com.secondpawshop.init.entity.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 
 public class ProductoDto {
 	
