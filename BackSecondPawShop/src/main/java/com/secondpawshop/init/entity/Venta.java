@@ -28,7 +28,10 @@ public class Venta {
 	private String idUsuarioComprador;
 	
 	@Column (name = "CANTIDADACOMPRAR")
-	private String cantidadAComprar;
+	private int cantidadAComprar;
+	
+	@Column (name = "PRECIOTOTAL")
+	private int precioTotal;
 
 	@Column (name = "ESTADO")
 	private String estado;
@@ -38,13 +41,14 @@ public class Venta {
 	}
 
 	public Venta(String idVenta, String idUsuarioPropetario, String nombreProducto, String idUsuarioComprador,
-			String cantidadAComprar, String estado) {
+			int cantidadAComprar, int precioTotal, String estado) {
 		super();
 		this.idVenta = idVenta;
 		this.idUsuarioPropetario = idUsuarioPropetario;
 		this.nombreProducto = nombreProducto;
 		this.idUsuarioComprador = idUsuarioComprador;
 		this.cantidadAComprar = cantidadAComprar;
+		this.precioTotal = precioTotal;
 		this.estado = estado;
 	}
 
@@ -80,12 +84,20 @@ public class Venta {
 		this.idUsuarioComprador = idUsuarioComprador;
 	}
 
-	public String getCantidadAComprar() {
+	public int getCantidadAComprar() {
 		return cantidadAComprar;
 	}
 
-	public void setCantidadAComprar(String cantidadAComprar) {
+	public void setCantidadAComprar(int cantidadAComprar) {
 		this.cantidadAComprar = cantidadAComprar;
+	}
+
+	public int getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(int precioTotal) {
+		this.precioTotal = precioTotal;
 	}
 
 	public String getEstado() {
