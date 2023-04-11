@@ -13,22 +13,17 @@ import com.secondpawshop.init.service.VentaService;
 
 @RestController
 @CrossOrigin
-public class ventaControlller {
+public class ventaController {
 	
 	final private VentaService ventaService;
 
-	public ventaControlller(VentaService ventaService) {
+	public ventaController(VentaService ventaService) {
 		this.ventaService = ventaService;
 	}
 	
 	@PostMapping("/Venta/AgregarAlCarro")
 	public ResponseEntity<Venta> agregarAlCarro (@RequestBody VentaDto venta ){
 		
-		/*Producto producto = new Producto(p.getIdUsuarioFK(),p.getNombre(), p.getCategoria(), p.getDescripcion(),
-				p.getCantidad(), p.getPrecio(), p.getImagen(), "VERIFICANDO");
-		productoService.save(producto);
-		
-		*/
 		return new ResponseEntity<>(ventaService.agregarAlCarro(venta), HttpStatus.CREATED);
 	}
 	

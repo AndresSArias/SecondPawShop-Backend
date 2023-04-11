@@ -1,27 +1,26 @@
 package com.secondpawshop.init.entity;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table (name = "VENTA")
 @IdClass (VentaLlaveCompuesta.class)
+@Access(value=AccessType.FIELD)
 public class Venta {
 	
 	@Id
 	@Column (name = "IDVENTA")
 	private String idVenta;
 	
-	@Id
-	@Column (name = "IDUSUARIOPROPETARIO")
-	private String idUsuarioPropetario;
-	
-	@Id
-	@Column (name = "NOMBREPRODUCTO")
-	private String nombreProducto;
+	private ProductoLlaveCompuesta productoLlaveCompuesta;
 	
 	@Id
 	@Column (name = "IDUSUARIOCOMPRADOR")
@@ -40,12 +39,11 @@ public class Venta {
 		
 	}
 
-	public Venta(String idVenta, String idUsuarioPropetario, String nombreProducto, String idUsuarioComprador,
+	public Venta(String idVenta, ProductoLlaveCompuesta productoLlaveCompuesta, String idUsuarioComprador,
 			int cantidadAComprar, int precioTotal, String estado) {
 		super();
 		this.idVenta = idVenta;
-		this.idUsuarioPropetario = idUsuarioPropetario;
-		this.nombreProducto = nombreProducto;
+		this.productoLlaveCompuesta = productoLlaveCompuesta;
 		this.idUsuarioComprador = idUsuarioComprador;
 		this.cantidadAComprar = cantidadAComprar;
 		this.precioTotal = precioTotal;
@@ -60,20 +58,12 @@ public class Venta {
 		this.idVenta = idVenta;
 	}
 
-	public String getIdUsuarioPropetario() {
-		return idUsuarioPropetario;
+	public ProductoLlaveCompuesta getProductoLlaveCompuesta() {
+		return productoLlaveCompuesta;
 	}
 
-	public void setIdUsuarioPropetario(String idUsuarioPropetario) {
-		this.idUsuarioPropetario = idUsuarioPropetario;
-	}
-
-	public String getNombreProducto() {
-		return nombreProducto;
-	}
-
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setProductoLlaveCompuesta(ProductoLlaveCompuesta productoLlaveCompuesta) {
+		this.productoLlaveCompuesta = productoLlaveCompuesta;
 	}
 
 	public String getIdUsuarioComprador() {
@@ -107,5 +97,5 @@ public class Venta {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 }
