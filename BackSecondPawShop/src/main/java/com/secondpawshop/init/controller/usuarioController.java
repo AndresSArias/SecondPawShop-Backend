@@ -51,7 +51,7 @@ public class usuarioController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/Usuario/login")
+	@PostMapping("/Usuario/login")
 	public Usuario getCredencial (@RequestBody UsuarioLoginDto dataLogin) {
 		return usuarioService.getLogin(dataLogin);
 	}
