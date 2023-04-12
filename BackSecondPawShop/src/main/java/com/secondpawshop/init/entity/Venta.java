@@ -34,7 +34,23 @@ public class Venta {
     @Column(name = "ESTADO", nullable = false, length = 50)
     private String estado;
 
-    public VentaId getId() {
+    public Venta() {
+	
+	}
+
+    public Venta(VentaId id, Producto producto, Usuario usuario, int cantidadacomprar, int preciototal, String estado) {
+		super();
+		this.id = id;
+		this.producto = producto;
+		this.usuario = usuario;
+		this.cantidadacomprar = cantidadacomprar;
+		this.preciototal = preciototal;
+		this.estado = estado;
+	}
+
+
+
+	public VentaId getId() {
         return id;
     }
 

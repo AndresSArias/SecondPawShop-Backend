@@ -20,13 +20,5 @@ public interface VentaRepository extends JpaRepository <Venta, VentaId> {
 			,nativeQuery = true)
 	
 	void addVenta (String idVenta, String idUsuarioPropetario, String nombreProducto, String idUsuarioComprador, int cantidadAComprar, int precioTotal);
-	/*
-	@Transactional
-	@Query(value = "SELECT v FROM Venta v WHERE v.idUsuarioComprador = :idUsuarioComprador AND v.estado = 'CARRO' ORDER BY v.idVenta DESC")
-	Venta traerIdVentaEnCarrito(@Param("idUsuarioComprador") String idUsuarioComprador);
-	
-	@Transactional
-	@Query(value = "SELECT v FROM Venta v WHERE v.idUsuarioComprador = :idUsuarioComprador AND v.estado = 'COMPRADO' ORDER BY v.idVenta DESC")
-	Venta traerIdVentaComprado(@Param("idUsuarioComprador") String idUsuarioComprador);
-*/
+
 }

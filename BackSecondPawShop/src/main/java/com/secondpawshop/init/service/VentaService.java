@@ -1,30 +1,48 @@
 package com.secondpawshop.init.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
+import com.secondpawshop.init.entity.Producto;
 import com.secondpawshop.init.entity.ProductoId;
+import com.secondpawshop.init.entity.Usuario;
 import com.secondpawshop.init.entity.Venta;
+import com.secondpawshop.init.entity.VentaId;
 import com.secondpawshop.init.entity.dto.VentaDto;
+import com.secondpawshop.init.repository.IdCarroRepository;
+import com.secondpawshop.init.repository.IdCompradoRepository;
+import com.secondpawshop.init.repository.ProductoRepository;
+import com.secondpawshop.init.repository.UsuarioRepository;
 import com.secondpawshop.init.repository.VentaRepository;
 @Service
 public class VentaService {
 	
 	final private VentaRepository ventaRepository;
+	final private ProductoRepository repoProducto;
+	final private UsuarioRepository repoUsuario;
+	final private IdCarroRepository repoIdCarro;
+	final private IdCompradoRepository repoIdComprado;
 	
-	public VentaService(VentaRepository ventaRepository) {
+	public VentaService(VentaRepository ventaRepository, ProductoRepository repoProducto, UsuarioRepository repoUsuario, IdCarroRepository repoIdCarro, IdCompradoRepository repoIdComprado) {
 		this.ventaRepository = ventaRepository;
+		this.repoProducto = repoProducto;
+		this.repoUsuario = repoUsuario;
+		this.repoIdCarro = repoIdCarro;
+		this.repoIdComprado = repoIdComprado;
 	}
-/*
+
 	public Venta agregarAlCarro(VentaDto ventaDto) {
 		
-		Venta venta = new Venta(traerIdVenta(ventaDto.getIdUsuarioComprador()), ventaDto.getIdUsuarioPropetario()
-				, ventaDto.getNombreProducto(), ventaDto.getIdUsuarioComprador(), ventaDto.getCantidadAComprar(), ventaDto.getPrecioTotal(), "CARRO");
+		VentaId id = new VentaId(traerIdVenta(ventaDto.getIdUsuarioComprador()), ventaDto.getIdUsuarioPropetario(),ventaDto.getNombreProducto(),
+				ventaDto.getIdUsuarioComprador());
 		
+		ProductoId productoId = new ProductoId(ventaDto.getIdUsuarioPropetario(), ventaDto.getNombreProducto());
+		Optional<Producto> producto = repoProducto.findById(productoId);
 		
-		ProductoId productoLlaveCompuesta = new ProductoId(ventaDto.getIdUsuarioPropetario(), ventaDto.getNombreProducto());
-		System.out.print(productoLlaveCompuesta.toString());
-		Venta venta = new Venta(traerIdVenta(ventaDto.getIdUsuarioComprador()),productoLlaveCompuesta , ventaDto.getIdUsuarioComprador(),
-				ventaDto.getCantidadAComprar(), ventaDto.getPrecioTotal(), "CARRO");
+		Optional<Usuario> usuario = repoUsuario.findById(ventaDto.getIdUsuarioComprador());
+		
+		Venta venta = new Venta(id,  producto.get(),  usuario.get(), ventaDto.getCantidadAComprar(), ventaDto.getPrecioTotal(), "CARRO");
 		
 		ventaRepository.save(venta);
 		
@@ -33,12 +51,12 @@ public class VentaService {
 	
 	private String traerIdVenta(String idUsuarioComprador) {
 		
-		String idVenta = ventaRepository.traerIdVentaEnCarrito(idUsuarioComprador).getIdVenta();
+		String idVenta = repoIdCarro.getIdCarro(idUsuarioComprador);
 		
-		if (idVenta.isEmpty()) {
-			idVenta = ventaRepository.traerIdVentaComprado(idUsuarioComprador).getIdVenta();
+		if (idVenta == null) {
+			idVenta = repoIdComprado.getIdComprado(idUsuarioComprador);
 			
-			if (idVenta.isEmpty()) {
+			if (idVenta == null) {
 				idVenta = "1";
 			}else {
 				idVenta = ""+ (Integer. parseInt(idVenta)+1);
@@ -48,5 +66,5 @@ public class VentaService {
 		}
 		return idVenta;
 	}
-	*/
+	
 }
