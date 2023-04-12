@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.secondpawshop.init.repository.HistorialRepository;
+//import com.secondpawshop.init.repository.HistorialRepository;
 import com.secondpawshop.init.repository.UsuarioRepository;
 import com.secondpawshop.init.entity.Usuario;
 import com.secondpawshop.init.entity.dto.UsuarioDto;
@@ -32,6 +33,27 @@ public class UserService {
 		usuarioRepository.save(cliente);
 	}
 	
+	public List<VentaHistorialDto> getHistorial (String idUsuario) {
+		
+		List<ViewHistorial> historial = historialRepository.getHistorial(idUsuario);
+		List<VentaHistorialDto> historialDto = generarHistorialDto(historial);
+		return historialDto;
+
+	}
+	
+	private List<VentaHistorialDto> generarHistorialDto(List<ViewHistorial> historial) {
+		
+		List<VentaHistorialDto> historialDto = new ArrayList<VentaHistorialDto>();
+		
+		for (int i = 0; i < historial.size(); i++) {
+			historialDto.add(new VentaHistorialDto (historial.get(i).getImagen(),historial.get(i).getNombre(), historial.get(i).getCategoria()
+					,historial.get(i).getDescripcion(), historial.get(i).getCantidadAComprar(), historial.get(i).getPrecioTotal()));
+		}
+		
+		return historialDto;
+	}
+	
+	
 	public Usuario getLogin (UsuarioLoginDto dataLogin) {
 		
 		Optional<Usuario> usuario = usuarioRepository.findById(dataLogin.getIdUsuario());
@@ -48,25 +70,11 @@ public class UserService {
 		
 	}
 	
-	public List<VentaHistorialDto> getHistorial (String idUsuario) {
-		
-		List<ViewHistorial> historial = historialRepository.getHistorial(idUsuario);
-		List<VentaHistorialDto> historialDto = generarHistorialDto(historial);
-		return historialDto;
+	
 
-	}
-
-	private List<VentaHistorialDto> generarHistorialDto(List<ViewHistorial> historial) {
-		
-		List<VentaHistorialDto> historialDto = new ArrayList<VentaHistorialDto>();
-		
-		for (int i = 0; i < historial.size(); i++) {
-			historialDto.add(new VentaHistorialDto (historial.get(i).getImagen(),historial.get(i).getNombre(), historial.get(i).getCategoria()
-					,historial.get(i).getDescripcion(), historial.get(i).getCantidadAComprar(), historial.get(i).getPrecioTotal()));
-		}
-		
-		return historialDto;
-	}
+	
+	
+	
 	
 	
 	

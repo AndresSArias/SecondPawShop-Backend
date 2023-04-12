@@ -20,11 +20,11 @@ public class ventaController {
 	public ventaController(VentaService ventaService) {
 		this.ventaService = ventaService;
 	}
-	
+	/*
 	@PostMapping("/Venta/AgregarAlCarro")
 	public ResponseEntity<Venta> agregarAlCarro (@RequestBody VentaDto venta ){
 		
 		return new ResponseEntity<>(ventaService.agregarAlCarro(venta), HttpStatus.CREATED);
 	}
-	
+	*/
 }

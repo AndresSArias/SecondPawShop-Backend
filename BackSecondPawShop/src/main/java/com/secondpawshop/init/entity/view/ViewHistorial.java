@@ -7,8 +7,9 @@ import jakarta.persistence.Table;
 import org.springframework.data.annotation.Immutable;
 @Entity
 @Table (name = "VISTAHISTORIAL")
-
+@Immutable
 public class ViewHistorial {
+	
 	@Id
 	@Column (name = "IMAGEN")
 	private String imagen;
@@ -23,7 +24,7 @@ public class ViewHistorial {
 	private String descripcion;
 	
 	@Column (name = "CANTIDADACOMPRAR")
-	private String cantidadAComprar;
+	private int cantidadAComprar;
 	
 	@Column (name = "PRECIOTOTAL")
 	private int precioTotal;
@@ -35,7 +36,7 @@ public class ViewHistorial {
 		
 	}
 
-	public ViewHistorial(String imagen, String nombre, String categoria, String descripcion, String cantidadAComprar,
+	public ViewHistorial(String imagen, String nombre, String categoria, String descripcion, int cantidadAComprar,
 			int precioTotal, String idUsuarioComprador) {
 		super();
 		this.imagen = imagen;
@@ -79,11 +80,11 @@ public class ViewHistorial {
 		this.descripcion = descripcion;
 	}
 
-	public String getCantidadAComprar() {
+	public int getCantidadAComprar() {
 		return cantidadAComprar;
 	}
 
-	public void setCantidadAComprar(String cantidadAComprar) {
+	public void setCantidadAComprar(int cantidadAComprar) {
 		this.cantidadAComprar = cantidadAComprar;
 	}
 

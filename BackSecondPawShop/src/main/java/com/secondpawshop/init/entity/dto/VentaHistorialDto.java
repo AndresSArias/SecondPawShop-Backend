@@ -6,7 +6,7 @@ public class VentaHistorialDto {
 	private String nombre;
 	private String categoria;
 	private String descripcion;
-	private String cantidadAComprar;
+	private int cantidadAComprar;
 	private int precioTotal;
 	
 	public VentaHistorialDto() {
@@ -14,7 +14,7 @@ public class VentaHistorialDto {
 	}
 
 	public VentaHistorialDto(String imagen, String nombre, String categoria, String descripcion,
-			String cantidadAComprar, int precioTotal) {
+			int cantidadAComprar, int precioTotal) {
 		super();
 		this.imagen = imagen;
 		this.nombre = nombre;
@@ -56,11 +56,11 @@ public class VentaHistorialDto {
 		this.descripcion = descripcion;
 	}
 
-	public String getCantidadAComprar() {
+	public int getCantidadAComprar() {
 		return cantidadAComprar;
 	}
 
-	public void setCantidadAComprar(String cantidadAComprar) {
+	public void setCantidadAComprar(int cantidadAComprar) {
 		this.cantidadAComprar = cantidadAComprar;
 	}
 

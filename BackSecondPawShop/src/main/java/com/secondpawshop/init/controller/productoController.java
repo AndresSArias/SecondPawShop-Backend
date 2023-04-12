@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.secondpawshop.init.service.ProductService;
 import com.secondpawshop.init.entity.Producto;
-import com.secondpawshop.init.entity.ProductoLlaveCompuesta;
+import com.secondpawshop.init.entity.ProductoId;
 import com.secondpawshop.init.entity.dto.ProductoDto;
+import com.secondpawshop.init.entity.dto.ProductoFullDto;
 
 @RestController
 @CrossOrigin
@@ -29,14 +30,44 @@ public class productoController {
 	}
 	
 	@GetMapping("/Producto/Publicado")
-	public List <Producto> getProductosPublicados (){
+	public List <ProductoFullDto> getProductosPublicados (){
 		return productoService.getProductoPublicado();
 	}
-
+	
 	@GetMapping("/Producto/Verificando")
-	public List <Producto> getProductoVerificando (){
+	public List <ProductoFullDto> getProductoVerificando (){
 		return productoService.getProductoVerificando();
 	}
+	
+	@PostMapping("/Producto/Crear")
+	public ResponseEntity<Producto> crearProducto (@RequestBody ProductoDto p ){
+		return new ResponseEntity<>(productoService.crearProducto(p), HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/Producto/{categoria}")
+	public List <ProductoFullDto> getProductFromCategory (@PathVariable ("categoria")String categoria){
+		return productoService.getProductFromCategory(categoria);
+	}
+	
+	@PostMapping("/Producto")
+	public ResponseEntity<ProductoDto> getProducto(@RequestBody ProductoId llaveCompuesta) {
+		ProductoDto cliente = productoService.findByIdUsuarioFKAndNombre(llaveCompuesta);
+		return new ResponseEntity<ProductoDto>(cliente, HttpStatus.OK);
+	}
+	
+	@PutMapping("/Producto/VerificandoToPublicado")
+	public ResponseEntity<Void> actualizarProducto(@RequestBody ProductoId llaveCompuesta) {		
+		productoService.actualizarProducto(llaveCompuesta);
+	    return ResponseEntity.noContent().build();
+	}
+	
+	
+	
+	
+	
+	
+	////////////////////
+	
 	/*
 	@PutMapping("/Producto/VerificandoToPublicado")
     public ResponseEntity<Void> actualizarCampo(@RequestBody String idUsuarioFK, @RequestBody String nombre) {
@@ -45,11 +76,6 @@ public class productoController {
     }
 	*/
 	
-	@PutMapping("/Producto/VerificandoToPublicado")
-	public ResponseEntity<Void> actualizarProducto(@RequestBody ProductoLlaveCompuesta llaveCompuesta) {
-		productoService.actualizarProducto(llaveCompuesta);
-	    return ResponseEntity.noContent().build();
-	}
 	
 	/*
 	@PostMapping("/Producto/Crear")
@@ -60,24 +86,9 @@ public class productoController {
 	}
 	*/
 	
-	@PostMapping("/Producto/Crear")
-	public ResponseEntity<Producto> crearProducto (@RequestBody ProductoDto p ){
-		Producto producto = new Producto(p.getIdUsuarioFK(),p.getNombre(), p.getCategoria(), p.getDescripcion(),
-				p.getCantidad(), p.getPrecio(), p.getImagen(), "VERIFICANDO");
-		productoService.save(producto);
-		return new ResponseEntity<>(producto, HttpStatus.CREATED);
-	}
 	
-	@GetMapping("/Producto/{categoria}")
-	public List <Producto> getProductFromCategory (@PathVariable ("categoria")String categoria){
-		return productoService.getProductFromCategory(categoria);
-	}
 	
-	@GetMapping("/Producto")
-	public ResponseEntity<ProductoDto> getProducto(@RequestBody ProductoLlaveCompuesta llaveCompuesta) {
-		ProductoDto cliente = productoService.findByIdUsuarioFKAndNombre(llaveCompuesta);
-		return new ResponseEntity<ProductoDto>(cliente, HttpStatus.OK);
-	}
+	
 	
 	@DeleteMapping("Producto/Eliminar/{idUsuarioFK}/{nombre}")
     public void eliminarProducto(@PathVariable("idUsuarioFK") String idUsuarioFK, @PathVariable("nombre") String nombre) {

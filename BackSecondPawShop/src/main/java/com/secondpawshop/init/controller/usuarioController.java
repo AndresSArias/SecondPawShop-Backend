@@ -3,7 +3,7 @@ package com.secondpawshop.init.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.secondpawshop.init.service.UserService;
-import com.secondpawshop.init.entity.ProductoLlaveCompuesta;
+import com.secondpawshop.init.entity.ProductoId;
 import com.secondpawshop.init.entity.Usuario;
 import com.secondpawshop.init.entity.dto.UsuarioDto;
 import com.secondpawshop.init.entity.dto.UsuarioLoginDto;
@@ -35,17 +35,11 @@ public class usuarioController {
 		return usuarioService.getUsers();
 	}
 	
-	@GetMapping ("/prueba")
-	public String getPrueba() {
-		return "Hola Mundo deploy";
-	}
-	
 	@PostMapping("/Usuario/registrar")
 	public ResponseEntity<Usuario> save(@RequestBody UsuarioDto c) {
-		
 		Usuario cliente = new Usuario (c.getIdUsuario(), c.getNombre(), c.getApellido()
-				, c.getCorreo(),c.getCelular(), c.getDireccion(),c.getContrasena(), "CLIENTE");
-		
+				,c.getCorreo(),c.getCelular(), c.getDireccion(),c.getContrasena(), "CLIENTE");
+				
 		usuarioService.save(cliente);
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
@@ -56,14 +50,27 @@ public class usuarioController {
 		return usuarioService.getLogin(dataLogin);
 	}
 	
+	@GetMapping ("/Usuario/Historial/{idUsuario}")
+	public List <VentaHistorialDto> getHistorial(@PathVariable String idUsuario){
+		return usuarioService.getHistorial(idUsuario);
+	}
+	
+	/////
+	@GetMapping ("/prueba")
+	public String getPrueba() {
+		return "Hola Mundo deploy";
+	}
+	
+	
+	
+	
+	
 	@PutMapping("/Usuario/Actualizar")
 	public ResponseEntity<Void> actualizarUsuario(@RequestBody UsuarioDto usuarioActualizado) {
 		usuarioService.actualizarUsuario(usuarioActualizado);
 	    return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping ("/Usuario/Historial/{idUsuario}")
-	public List <VentaHistorialDto> getHistorial(@PathVariable String idUsuario){
-		return usuarioService.getHistorial(idUsuario);
-	}
+	
+	
 }

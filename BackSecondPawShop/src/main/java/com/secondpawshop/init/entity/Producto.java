@@ -1,51 +1,48 @@
 package com.secondpawshop.init.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
 
 @Entity
-@Table (name = "PRODUCTO")
-@IdClass(ProductoLlaveCompuesta.class)
+@Table(name = "producto")
 public class Producto {
+    @EmbeddedId
+    private ProductoId id;
+    
+    
+    @MapsId("id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "IDUSUARIOFK", nullable = false)
+    private Usuario usuario;
 
-	@Id
-	@Column (name = "IDUSUARIOFK")
-	private String idUsuarioFK;
-	
-	@Id
-	@Column (name = "NOMBRE")
-	private String nombre;
-	
-	@Column (name = "CATEGORIA")
-	private String categoria;
+    @Column(name = "CATEGORIA", nullable = false, length = 10)
+    private String categoria;
 
-	@Column (name = "DESCRIPCION")
-	private String descripcion;
+    @Column(name = "DESCRIPCION", nullable = false, length = 200)
+    private String descripcion;
+
+    @Column(name = "CANTIDAD", nullable = false)
+    private int cantidad;
+
+    @Column(name = "PRECIO", nullable = false)
+    private int precio;
+
+    @Column(name = "IMAGEN", nullable = false, length = 200)
+    private String imagen;
+
+    @Column(name = "ESTADO", nullable = false, length = 15)
+    private String estado;
+    
+    public Producto() {
 	
-	@Column (name = "CANTIDAD")
-	private int cantidad;
-	
-	@Column (name = "PRECIO")
-	private int precio;
-	
-	@Column (name = "IMAGEN")
-	private String imagen;
-	
-	@Column (name = "ESTADO")
-	private String estado;
-	
-	public Producto () {
-		
 	}
 
-	public Producto(String idUsuarioFK, String nombre, String categoria, String descripcion, int cantidad, int precio,
+	public Producto(ProductoId id, Usuario usuario, String categoria, String descripcion, int cantidad, int precio,
 			String imagen, String estado) {
 		super();
-		this.idUsuarioFK = idUsuarioFK;
-		this.nombre = nombre;
+		this.id = id;
+		this.usuario = usuario;
 		this.categoria = categoria;
 		this.descripcion = descripcion;
 		this.cantidad = cantidad;
@@ -54,20 +51,20 @@ public class Producto {
 		this.estado = estado;
 	}
 
-	public String getIdUsuarioFK() {
-		return idUsuarioFK;
+	public ProductoId getId() {
+		return id;
 	}
 
-	public void setIdUsuarioFK(String idUsuarioFK) {
-		this.idUsuarioFK = idUsuarioFK;
+	public void setId(ProductoId id) {
+		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getCategoria() {
@@ -117,6 +114,5 @@ public class Producto {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
 }

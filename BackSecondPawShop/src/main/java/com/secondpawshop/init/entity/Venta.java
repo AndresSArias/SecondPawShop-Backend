@@ -1,101 +1,85 @@
 package com.secondpawshop.init.entity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.*;
 
 @Entity
-@Table (name = "VENTA")
-@IdClass (VentaLlaveCompuesta.class)
-@Access(value=AccessType.FIELD)
+@Table(name = "venta")
 public class Venta {
-	
-	@Id
-	@Column (name = "IDVENTA")
-	private String idVenta;
-	
-	private ProductoLlaveCompuesta productoLlaveCompuesta;
-	
-	@Id
-	@Column (name = "IDUSUARIOCOMPRADOR")
-	private String idUsuarioComprador;
-	
-	@Column (name = "CANTIDADACOMPRAR")
-	private int cantidadAComprar;
-	
-	@Column (name = "PRECIOTOTAL")
-	private int precioTotal;
+    @EmbeddedId
+    private VentaId id;
+    
+   
+    @MapsId("id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumns({
+            @JoinColumn(name = "NOMBREPRODUCTO", referencedColumnName = "NOMBRE", nullable = false),
+            @JoinColumn(name = "IDUSUARIOPROPETARIO", referencedColumnName = "IDUSUARIOFK", nullable = false)
+    })
+    private Producto producto;
+    
+    
+    @MapsId("id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "IDUSUARIOCOMPRADOR", nullable = false)
+    private Usuario usuario;
 
-	@Column (name = "ESTADO")
-	private String estado;
-	
-	public Venta () {
-		
-	}
+    @Column(name = "CANTIDADACOMPRAR", nullable = false)
+    private int cantidadacomprar;
 
-	public Venta(String idVenta, ProductoLlaveCompuesta productoLlaveCompuesta, String idUsuarioComprador,
-			int cantidadAComprar, int precioTotal, String estado) {
-		super();
-		this.idVenta = idVenta;
-		this.productoLlaveCompuesta = productoLlaveCompuesta;
-		this.idUsuarioComprador = idUsuarioComprador;
-		this.cantidadAComprar = cantidadAComprar;
-		this.precioTotal = precioTotal;
-		this.estado = estado;
-	}
+    @Column(name = "PRECIOTOTAL", nullable = false)
+    private int preciototal;
 
-	public String getIdVenta() {
-		return idVenta;
-	}
+    @Column(name = "ESTADO", nullable = false, length = 50)
+    private String estado;
 
-	public void setIdVenta(String idVenta) {
-		this.idVenta = idVenta;
-	}
+    public VentaId getId() {
+        return id;
+    }
 
-	public ProductoLlaveCompuesta getProductoLlaveCompuesta() {
-		return productoLlaveCompuesta;
-	}
+    public void setId(VentaId id) {
+        this.id = id;
+    }
 
-	public void setProductoLlaveCompuesta(ProductoLlaveCompuesta productoLlaveCompuesta) {
-		this.productoLlaveCompuesta = productoLlaveCompuesta;
-	}
+    public Producto getProducto() {
+        return producto;
+    }
 
-	public String getIdUsuarioComprador() {
-		return idUsuarioComprador;
-	}
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 
-	public void setIdUsuarioComprador(String idUsuarioComprador) {
-		this.idUsuarioComprador = idUsuarioComprador;
-	}
+    public Usuario getIdusuariocomprador() {
+        return usuario;
+    }
 
-	public int getCantidadAComprar() {
-		return cantidadAComprar;
-	}
+    public void setIdusuariocomprador(Usuario idusuariocomprador) {
+        this.usuario = idusuariocomprador;
+    }
 
-	public void setCantidadAComprar(int cantidadAComprar) {
-		this.cantidadAComprar = cantidadAComprar;
-	}
+    public Integer getCantidadacomprar() {
+        return cantidadacomprar;
+    }
 
-	public int getPrecioTotal() {
-		return precioTotal;
-	}
+    public void setCantidadacomprar(Integer cantidadacomprar) {
+        this.cantidadacomprar = cantidadacomprar;
+    }
 
-	public void setPrecioTotal(int precioTotal) {
-		this.precioTotal = precioTotal;
-	}
+    public Integer getPreciototal() {
+        return preciototal;
+    }
 
-	public String getEstado() {
-		return estado;
-	}
+    public void setPreciototal(Integer preciototal) {
+        this.preciototal = preciototal;
+    }
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
 }
