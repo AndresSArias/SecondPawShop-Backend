@@ -9,6 +9,7 @@ import com.secondpawshop.init.entity.ProductoId;
 import com.secondpawshop.init.entity.Usuario;
 import com.secondpawshop.init.entity.Venta;
 import com.secondpawshop.init.entity.VentaId;
+import com.secondpawshop.init.entity.dto.VentaCarroBackendDto;
 import com.secondpawshop.init.entity.dto.VentaDto;
 import com.secondpawshop.init.repository.IdCarroRepository;
 import com.secondpawshop.init.repository.IdCompradoRepository;
@@ -65,6 +66,37 @@ public class VentaService {
 			
 		}
 		return idVenta;
+	}
+
+	public void cancelarProductoEnCarrito(VentaCarroBackendDto ventaCancelarCarroDto) {
+		
+		String IdVenta = repoIdCarro.getIdCarro(ventaCancelarCarroDto.getIdusuariocomprador());
+		
+		VentaId id = new VentaId (IdVenta, ventaCancelarCarroDto.getIdusuariopropetario(), ventaCancelarCarroDto.getNombreproducto(),ventaCancelarCarroDto.getIdusuariocomprador());
+		
+		Optional<Venta> ventaOptional = ventaRepository.findById(id);
+		
+		if (ventaOptional.isPresent()) {
+	        Venta venta = ventaOptional.get();
+	        venta.setEstado("CANCELADO");
+	        ventaRepository.save(venta);
+	    }
+	}
+
+	public void comprarProductoEnCarrito(VentaCarroBackendDto ventaComprarCarroDto) {
+		
+		String IdVenta = repoIdCarro.getIdCarro(ventaComprarCarroDto.getIdusuariocomprador());
+		
+		VentaId id = new VentaId (IdVenta, ventaComprarCarroDto.getIdusuariopropetario(), ventaComprarCarroDto.getNombreproducto()
+				,ventaComprarCarroDto.getIdusuariocomprador());
+		
+		Optional<Venta> ventaOptional = ventaRepository.findById(id);
+		
+		if (ventaOptional.isPresent()) {
+	        Venta venta = ventaOptional.get();
+	        venta.setEstado("COMPRADO");
+	        ventaRepository.save(venta);
+	    }
 	}
 	
 }

@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.secondpawshop.init.entity.ProductoId;
 import com.secondpawshop.init.entity.Venta;
+import com.secondpawshop.init.entity.VentaId;
+import com.secondpawshop.init.entity.dto.UsuarioDto;
+import com.secondpawshop.init.entity.dto.VentaCarroBackendDto;
 import com.secondpawshop.init.entity.dto.VentaDto;
 import com.secondpawshop.init.service.VentaService;
 
@@ -26,5 +31,19 @@ public class ventaController {
 		
 		return new ResponseEntity<>(ventaService.agregarAlCarro(venta), HttpStatus.CREATED);
 	}
+	
+
+	
+	@PutMapping("/Venta/Carro/Cancelar")
+	public ResponseEntity<Void> actualizarProducto(@RequestBody VentaCarroBackendDto VentaCancelarCarroDto) {		
+		ventaService.cancelarProductoEnCarrito(VentaCancelarCarroDto);
+	    return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping("/Venta/Carro/Comprar")
+	public ResponseEntity<Void> comprarProductos(@RequestBody VentaCarroBackendDto VentaComprarCarroDto) {		
+		ventaService.comprarProductoEnCarrito(VentaComprarCarroDto);
+	    return ResponseEntity.noContent().build();
+	}	
 	
 }

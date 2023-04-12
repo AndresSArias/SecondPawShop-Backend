@@ -59,36 +59,7 @@ public class productoController {
 	public ResponseEntity<Void> actualizarProducto(@RequestBody ProductoId llaveCompuesta) {		
 		productoService.actualizarProducto(llaveCompuesta);
 	    return ResponseEntity.noContent().build();
-	}
-	
-	
-	
-	
-	
-	
-	////////////////////
-	
-	/*
-	@PutMapping("/Producto/VerificandoToPublicado")
-    public ResponseEntity<Void> actualizarCampo(@RequestBody String idUsuarioFK, @RequestBody String nombre) {
-		productoService.actualizarProducto(idUsuarioFK, nombre);
-        return ResponseEntity.noContent().build();
-    }
-	*/
-	
-	
-	/*
-	@PostMapping("/Producto/Crear")
-	public ResponseEntity<Producto> crearProducto (@RequestBody Producto producto){
-		producto.setEstado("VERIFICANDO");
-		productoService.save(producto);
-		return new ResponseEntity<>(producto, HttpStatus.CREATED);
-	}
-	*/
-	
-	
-	
-	
+	}	
 	
 	@DeleteMapping("Producto/Eliminar/{idUsuarioFK}/{nombre}")
     public void eliminarProducto(@PathVariable("idUsuarioFK") String idUsuarioFK, @PathVariable("nombre") String nombre) {
