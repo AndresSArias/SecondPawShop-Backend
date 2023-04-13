@@ -69,6 +69,11 @@ public class UserService {
 		usuarioRepository.actualizarUsuario(usuarioActualizado);
 		
 	}
+
+	public Optional<Usuario> registrar(Usuario c) {
+		return usuarioRepository.findById(c.getId());
+	}
+
 	
 	
 

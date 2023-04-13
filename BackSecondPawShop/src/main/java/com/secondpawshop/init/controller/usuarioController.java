@@ -10,6 +10,7 @@ import com.secondpawshop.init.entity.dto.UsuarioLoginDto;
 import com.secondpawshop.init.entity.dto.VentaHistorialDto;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +38,18 @@ public class usuarioController {
 	
 	@PostMapping("/Usuario/registrar")
 	public ResponseEntity<Usuario> save(@RequestBody UsuarioDto c) {
+		
 		Usuario cliente = new Usuario (c.getIdUsuario(), c.getNombre(), c.getApellido()
 				,c.getCorreo(),c.getCelular(), c.getDireccion(),c.getContrasena(), "CLIENTE");
-				
-		usuarioService.save(cliente);
+		Optional<Usuario> usuario = usuarioService.registrar(cliente);
+		if (usuario.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT );
+		}else {
+			usuarioService.save(cliente);
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
 
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		
 	}
 	
 	@PostMapping("/Usuario/login")
