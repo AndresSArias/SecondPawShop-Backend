@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @CrossOrigin
@@ -60,6 +61,17 @@ public class usuarioController {
 	@GetMapping ("/Usuario/Historial/{idUsuario}")
 	public List <VentaHistorialDto> getHistorial(@PathVariable String idUsuario){
 		return usuarioService.getHistorial(idUsuario);
+	}
+	
+	@GetMapping ("/Usuario/getRole/{id}")
+	public ResponseEntity<String> getRole (@PathVariable String id){
+		String role = usuarioService.getRole(id);
+		if (role == null) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}else {
+			return new ResponseEntity<>(role, HttpStatus.OK);
+		}
+		
 	}
 	
 	/////

@@ -74,6 +74,16 @@ public class UserService {
 		return usuarioRepository.findById(c.getId());
 	}
 
+	public String getRole(String id) {
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		if (usuario.isPresent()) {
+			return usuario.get().getRol();
+		}
+		
+		return null;
+	}
+
 	
 	
 
