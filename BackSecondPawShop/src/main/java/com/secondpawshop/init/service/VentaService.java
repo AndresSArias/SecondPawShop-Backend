@@ -119,7 +119,7 @@ public class VentaService {
 		
 		for (int i = 0; i < carro.size(); i++) {
 			carroDto.add(new VentaCarroDto (carro.get(i).getImagen(),carro.get(i).getNombreproducto(), carro.get(i).getCantidadacomprar()
-					,carro.get(i).getPrecio(), carro.get(i).getPreciototal()));
+					,carro.get(i).getPrecio(), carro.get(i).getPreciototal(),carro.get(i).getIdUsuarioPropietario()));
 		}
 		
 		return carroDto;

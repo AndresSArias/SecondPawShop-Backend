@@ -7,18 +7,21 @@ public class VentaCarroDto {
 	private int cantidadacomprar;
 	private int precio;
 	private int preciototal;
+	private String idUsuarioPropietario;
 	
 	public VentaCarroDto() {
 		
 	}
 
-	public VentaCarroDto(String imagen, String nombreproducto, int cantidadacomprar, int precio, int preciototal) {
+	public VentaCarroDto(String imagen, String nombreproducto, int cantidadacomprar, int precio, int preciototal,
+			String idUsuarioPropietario) {
 		super();
 		this.imagen = imagen;
 		this.nombreproducto = nombreproducto;
 		this.cantidadacomprar = cantidadacomprar;
 		this.precio = precio;
 		this.preciototal = preciototal;
+		this.idUsuarioPropietario = idUsuarioPropietario;
 	}
 
 	public String getImagen() {
@@ -61,5 +64,14 @@ public class VentaCarroDto {
 		this.preciototal = preciototal;
 	}
 
+	public String getIdUsuarioPropietario() {
+		return idUsuarioPropietario;
+	}
+
+	public void setIdUsuarioPropietario(String idUsuarioPropietario) {
+		this.idUsuarioPropietario = idUsuarioPropietario;
+	}
+
+	
 	
 }

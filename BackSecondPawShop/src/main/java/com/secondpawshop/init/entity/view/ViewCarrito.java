@@ -23,6 +23,8 @@ public class ViewCarrito {
 	private int precio;
 	@Column (name = "PRECIOTOTAL")
 	private int preciototal;
+	@Column (name = "IDUSUARIOPROPETARIO")
+	private String idUsuarioPropietario;
 	@Column (name = "IDUSUARIOCOMPRADOR")
 	private String idUsuarioComprador;
 	
@@ -30,13 +32,14 @@ public class ViewCarrito {
 	}
 
 	public ViewCarrito(String imagen, String nombreproducto, int cantidadacomprar, int precio, int preciototal,
-			String idUsuarioComprador) {
+			String idUsuarioPropietario, String idUsuarioComprador) {
 		super();
 		this.imagen = imagen;
 		this.nombreproducto = nombreproducto;
 		this.cantidadacomprar = cantidadacomprar;
 		this.precio = precio;
 		this.preciototal = preciototal;
+		this.idUsuarioPropietario = idUsuarioPropietario;
 		this.idUsuarioComprador = idUsuarioComprador;
 	}
 
@@ -80,6 +83,14 @@ public class ViewCarrito {
 		this.preciototal = preciototal;
 	}
 
+	public String getIdUsuarioPropietario() {
+		return idUsuarioPropietario;
+	}
+
+	public void setIdUsuarioPropietario(String idUsuarioPropietario) {
+		this.idUsuarioPropietario = idUsuarioPropietario;
+	}
+
 	public String getIdUsuarioComprador() {
 		return idUsuarioComprador;
 	}
@@ -87,7 +98,5 @@ public class ViewCarrito {
 	public void setIdUsuarioComprador(String idUsuarioComprador) {
 		this.idUsuarioComprador = idUsuarioComprador;
 	}
-	
-	
 	
 }
