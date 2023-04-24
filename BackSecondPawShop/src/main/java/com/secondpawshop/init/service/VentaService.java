@@ -1,5 +1,7 @@
 package com.secondpawshop.init.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -10,7 +12,12 @@ import com.secondpawshop.init.entity.Usuario;
 import com.secondpawshop.init.entity.Venta;
 import com.secondpawshop.init.entity.VentaId;
 import com.secondpawshop.init.entity.dto.VentaCarroBackendDto;
+import com.secondpawshop.init.entity.dto.VentaCarroDto;
 import com.secondpawshop.init.entity.dto.VentaDto;
+import com.secondpawshop.init.entity.dto.VentaHistorialDto;
+import com.secondpawshop.init.entity.view.ViewCarrito;
+import com.secondpawshop.init.entity.view.ViewHistorial;
+import com.secondpawshop.init.repository.CarroRepository;
 import com.secondpawshop.init.repository.IdCarroRepository;
 import com.secondpawshop.init.repository.IdCompradoRepository;
 import com.secondpawshop.init.repository.ProductoRepository;
@@ -24,13 +31,14 @@ public class VentaService {
 	final private UsuarioRepository repoUsuario;
 	final private IdCarroRepository repoIdCarro;
 	final private IdCompradoRepository repoIdComprado;
-	
-	public VentaService(VentaRepository ventaRepository, ProductoRepository repoProducto, UsuarioRepository repoUsuario, IdCarroRepository repoIdCarro, IdCompradoRepository repoIdComprado) {
+	final private CarroRepository	repoCarro;
+	public VentaService(VentaRepository ventaRepository, ProductoRepository repoProducto, UsuarioRepository repoUsuario, IdCarroRepository repoIdCarro, IdCompradoRepository repoIdComprado, CarroRepository repoCarro) {
 		this.ventaRepository = ventaRepository;
 		this.repoProducto = repoProducto;
 		this.repoUsuario = repoUsuario;
 		this.repoIdCarro = repoIdCarro;
 		this.repoIdComprado = repoIdComprado;
+		this.repoCarro = repoCarro;
 	}
 
 	public Venta agregarAlCarro(VentaDto ventaDto) {
@@ -97,6 +105,24 @@ public class VentaService {
 	        venta.setEstado("COMPRADO");
 	        ventaRepository.save(venta);
 	    }
+	}
+
+	public List<VentaCarroDto> getCarro(String idUsuario) {
+		List<ViewCarrito> carro = repoCarro.getCarro(idUsuario);
+		List<VentaCarroDto> carroDto = generarHistorialDto(carro);
+		return carroDto;
+	}
+
+	private List<VentaCarroDto> generarHistorialDto(List<ViewCarrito> carro) {
+		
+		List<VentaCarroDto> carroDto = new ArrayList<VentaCarroDto>();
+		
+		for (int i = 0; i < carro.size(); i++) {
+			carroDto.add(new VentaCarroDto (carro.get(i).getImagen(),carro.get(i).getNombreproducto(), carro.get(i).getCantidadacomprar()
+					,carro.get(i).getPrecio(), carro.get(i).getPreciototal()));
+		}
+		
+		return carroDto;
 	}
 	
 }

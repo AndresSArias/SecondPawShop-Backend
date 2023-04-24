@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name = "VISTACARRO")
 @Immutable
-public class VentaCarritoDto {
+public class ViewCarrito {
 	
 	@Id
 	@Column (name = "IMAGEN")
@@ -26,10 +26,10 @@ public class VentaCarritoDto {
 	@Column (name = "IDUSUARIOCOMPRADOR")
 	private String idUsuarioComprador;
 	
-	public VentaCarritoDto() {
+	public ViewCarrito() {
 	}
 
-	public VentaCarritoDto(String imagen, String nombreproducto, int cantidadacomprar, int precio, int preciototal,
+	public ViewCarrito(String imagen, String nombreproducto, int cantidadacomprar, int precio, int preciototal,
 			String idUsuarioComprador) {
 		super();
 		this.imagen = imagen;
